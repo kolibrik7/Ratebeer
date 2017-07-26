@@ -1,1 +1,2 @@
 testujeme git v sublime text
+test ssh
