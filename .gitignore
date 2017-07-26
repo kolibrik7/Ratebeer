@@ -1,0 +1,4 @@
+ratebeerenv/
+db.sqlite3
+ratebeer/__pycache__/
+manage.py
