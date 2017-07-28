@@ -1,3 +1,6 @@
 from django.shortcuts import render
 
-# Create your views here.
+from .models import Beer
+
+def zoznam(request):
+	return render(request, "beers/zoznam.html")
