@@ -3,4 +3,4 @@ db.sqlite3
 ratebeer/__pycache__/
 manage.py
 static/
-
+beers/migrations/
