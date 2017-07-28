@@ -3,7 +3,7 @@ from django.contrib.auth import login, authenticate
 from .forms import RegistrationForm
 
 def index(request):
-	return render(request, "index.html")
+	return render(request, "beers/index.html")
 
 def registration(request):
 	if request.method == "POST":
