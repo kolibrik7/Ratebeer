@@ -2,8 +2,8 @@ from django.db import models
 
 class Beer(models.Model):
 	STYLE_CHOICES = (
-		("lager", "Ležiak"),
-		("ale", "Ale"),
+		('lager', 'Ležiak'),
+		('ale', 'Ale'),
 	)
 
 	brewery = models.CharField(max_length=50)
