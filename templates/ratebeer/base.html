@@ -1,0 +1,66 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="{% static 'beers/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'beers/css/bootstrap-theme.min.css' %}">
+
+	<title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="{% url 'index' %}">Ratebeer</a>
+			</div> <!-- navbar-header -->
+
+			<div class="collapse navbar-collapse" id="menu">
+				<ul class="nav navbar-nav">
+					<li><a href="{% url 'index' %}">Hlavná stránka</a></li>
+					<li><a href="{% url 'piva' %}">Zoznam pív</a></li>
+				</ul>
+
+				<ul class="nav navbar-nav navbar-right">
+					{% if not user.is_authenticated %}
+						<li><a href="{% url 'registration' %}">Registrácia</a></li>
+						<li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span>Prihlásiť sa</a></li>
+					{% else %}
+						<li class="navbar-text">Ste prihlásený ako {{ user.username }}</li>
+						<li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span>Odhlásiť sa</a></li>
+					{% endif %}
+				</ul>
+			</div> <!-- collapse navbar-collapse -->
+		</div> <!-- container-fluid -->
+	</nav>
+
+	<div class="container">
+		<div class="jumbotron">
+			{% block content %}
+			{% endblock %}
+		</div>
+	</div>
+
+	<footer class="container-fluid text-center">
+		<p>Vytvoril Frederik Koľbík</p>
+	</footer>
+
+	<script src="{% static 'beers/js/jquery-3.2.1.min.js' %}"></script>
+	{% block scripts %}
+	{% endblock %}
+
+	<script>
+		$(document).ready(function() {
+			var pathname = window.location.pathname;
+			$('.nav > li > a[href="'+pathname+'"]').parent().addClass('active');
+
+			{% block javascript %}
+			{% endblock %}
+		});
+	</script>
