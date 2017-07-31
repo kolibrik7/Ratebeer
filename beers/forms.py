@@ -6,11 +6,11 @@ import datetime
 class BeerForm(forms.ModelForm):
 
 	date = forms.DateField(label="Dátum", widget=forms.SelectDateWidget(), initial=datetime.date.today)
-	plato = forms.FloatField(required=False, label="Stupňovitosť", min_value=6, max_value=40, value=12,
+	plato = forms.FloatField(required=False, label="Stupňovitosť", min_value=6, max_value=40, initial=12,
 		widget=forms.NumberInput(attrs={'id': 'stupnovitost', 'step': "0.5"}))
-	abv = forms.FloatField(required=False, label="Alkohol", min_value=0, max_value=20, value=5,
+	abv = forms.FloatField(required=False, label="Alkohol", min_value=0, max_value=20, initial=5,
 		widget=forms.NumberInput(attrs={'id': 'alkohol', 'step': "0.1"}))
-	price = forms.FloatField(required=False, label="Cena", min_value=0, max_value=5, value=1.5,
+	price = forms.FloatField(required=False, label="Cena", min_value=0, max_value=5, initial=1.5,
 		widget=forms.NumberInput(attrs={'id': 'cena', 'step': "0.1"}))
 
 
