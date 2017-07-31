@@ -17,11 +17,12 @@ class BeerForm(forms.ModelForm):
 	class Meta:
 		model = Beer
 
-		fields = ['brewery', 'name', 'style', 'plato', 'abv', 'city', 'place', 'date', 'serving', 
+		fields = ['brewery', 'country', 'name', 'style', 'plato', 'abv', 'city', 'place', 'date', 'serving', 
 		'price', 'volume', 'note', 'rating']
 
 		labels = {
 			'brewery': _("Pivovar"),
+			'country': _("Krajina pôvodu"),
 			'name': _("Názov"),
 			'style': _("Štýl"),
 			'city': _("Mesto"),

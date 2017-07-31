@@ -4,6 +4,13 @@ import django.utils.timezone
 class Beer(models.Model):
 
 	brewery = models.CharField(max_length=50)
+
+	COUNTRY_CHOICES = (
+		('SK', 'Slovensko'),
+		('CZ', 'Česká republika'),
+		('US', 'USA'),
+	)
+	country = models.CharField(max_length=30, choices=COUNTRY_CHOICES, default='SK')
 	name = models.CharField(max_length=70)
 
 	STYLE_CHOICES = (
@@ -13,7 +20,7 @@ class Beer(models.Model):
 	style = models.CharField(
 		max_length=10,
 		choices=STYLE_CHOICES,
-		default='ale'
+		default='lager'
 	)
 
 	plato = models.FloatField(null=True, blank=True)
