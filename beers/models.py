@@ -11,7 +11,7 @@ class Beer(models.Model):
 		#choices='STYLE_CHOICES',
 		#default='ale'
 	)
-	plato = models.IntegerField()
+	plato = models.PositiveSmallIntegerField()
 	abv = models.FloatField()
 	city = models.CharField(max_length=50)
 	place = models.CharField(max_length=70)
@@ -20,3 +20,4 @@ class Beer(models.Model):
 	price = models.FloatField()
 	volume = models.CharField(max_length=10) # choices
 	note = models.TextField()
+	rating = models.PositiveSmallIntegerField() #choices
