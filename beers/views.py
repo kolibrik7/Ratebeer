@@ -15,4 +15,4 @@ def pridanie_piva(request):
 	else:
 		form = BeerForm()
 
-	return render(request, "beers/add_beer.html")
+	return render(request, "beers/pridanie_piva.html", {'form': form})
