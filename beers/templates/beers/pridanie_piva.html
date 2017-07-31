@@ -15,7 +15,8 @@
 				{% if field.errors %}
 					<div class="form-group has-error">
 						<div class="col-sm-12">
-							<p>Zle vyplnené pole.</p>
+							<p>Zle vyplnené pole.<br>
+							{{ field.errors }}</p>
 						</div>
 					</div>
 				{% else %}

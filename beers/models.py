@@ -53,7 +53,7 @@ class Beer(models.Model):
 		(SEDMICKA, '0,75l'),
 		(LITER, '1l'),
 	)
-	volume = models.CharField(max_length=10, choices=VOLUME_CHOICES, default=VELKE) # choices
+	volume = models.FloatField(max_length=10, choices=VOLUME_CHOICES, default=VELKE) # choices
 
 	note = models.TextField()
 
