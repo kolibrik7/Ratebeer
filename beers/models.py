@@ -16,7 +16,7 @@ class Beer(models.Model):
 		default='ale'
 	)
 
-	plato = models.PositiveSmallIntegerField()
+	plato = models.PositiveSmallIntegerField(null=True, blank=True)
 	abv = models.FloatField()
 	city = models.CharField(max_length=50)
 	place = models.CharField(max_length=70)
