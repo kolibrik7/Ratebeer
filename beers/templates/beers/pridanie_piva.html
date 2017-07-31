@@ -1,0 +1,41 @@
+{% extends 'ratebeer/base.html' %}
+
+{% block title %}
+	Hodnotenie piva
+{% endblock %}
+
+{% block content %}
+	{% if user.is_authenticated %}
+		<h2>Hodnotenie piva</h2>
+		{% load widget_tweaks %}
+
+		<form class="form-horizontal" role="form" method="post">
+			{% csrf_token %}
+			{% for field in form %}
+				{% if field.errors %}
+					<div class="form-group has-error">
+						<div class="col-sm-12">
+							<p>Zle vyplnené pole.</p>
+						</div>
+					</div>
+				{% else %}
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="id_{{ field.name }}">{{ field.label }}</label>
+						<div class="col-sm-10">
+							{{ field|attr:"clas:form-control" }}
+						</div>
+					</div> <!-- form-group -->
+				{% endif %}
+
+			{% endfor %}
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<input type="submit" class="btn btn-primary" value="Ohodnotiť pivo">
+				</div>
+			</div>
+		</form>
+	{% else %} {% comment %}if user.is_authenticated{% endcomment %}
+		<p>Na túto akciu nemáte oprávnenie. Možno ste sa zabudli <a href="{% url 'login' %}">prihlásiť</a>?</p>
+	{% endif %}
+
+{% endblock %}

@@ -7,11 +7,11 @@ class BeerForm(forms.ModelForm):
 
 	date = forms.DateField(label="Dátum", widget=forms.SelectDateWidget(), initial=datetime.date.today)
 	plato = forms.FloatField(required=False, label="Stupňovitosť", min_value=6, max_value=40,
-		widget=NumberInput(attrs={'id': 'stupnovitost', 'step': "0.5"}))
+		widget=forms.NumberInput(attrs={'id': 'stupnovitost', 'step': "0.5"}))
 	abv = forms.FloatField(required=False, label="Alkohol", min_value=0, max_value=20,
-		widget=NumberInput(attrs={'id': 'alkohol', 'step': "0.1"}))
+		widget=forms.NumberInput(attrs={'id': 'alkohol', 'step': "0.1"}))
 	price = forms.FloatField(required=False, label="Cena", min_value=0, max_value=5,
-		widget=NumberInput(attrs={'id': 'cena', 'step': "0.1"}))
+		widget=forms.NumberInput(attrs={'id': 'cena', 'step': "0.1"}))
 
 
 	class Meta:
