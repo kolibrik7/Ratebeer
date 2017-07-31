@@ -20,7 +20,13 @@ class Beer(models.Model):
 	abv = models.FloatField(null=True, blank=True)
 	city = models.CharField(max_length=50)
 	place = models.CharField(max_length=70)
-	serving = models.BooleanField(default=True) # sud alebo flasa
+
+	SERVING_CHOICES = (
+		(True, 'Fľaša'),
+		(False, 'Sud'),
+	)
+	serving = models.BooleanField(choices=SERVING_CHOICES, default=True) # sud alebo flasa
+
 	date = models.DateField(default=django.utils.timezone.now)
 	price = models.FloatField(null=True, blank=True)
 
