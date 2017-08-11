@@ -87,7 +87,7 @@ class Beer(models.Model):
 	style = models.CharField(
 		max_length=10,
 		choices=STYLE_CHOICES,
-		default='lager'
+		default='ipa'
 	)
 
 	plato = models.FloatField(null=True, blank=True)
