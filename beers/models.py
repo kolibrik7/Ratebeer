@@ -338,7 +338,7 @@ class Beer(models.Model):
 	)
 	volume = models.FloatField(max_length=10, choices=VOLUME_CHOICES, default=VELKE) # choices
 
-	note = models.TextField()
+	note = models.TextField(null=True, blank=True)
 
 	ZLE = 1
 	PODPRIEMER = 2
