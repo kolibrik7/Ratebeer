@@ -6,35 +6,148 @@
 
 {% block content %}
 	{% if user.is_authenticated %}
-		<h2>Hodnotenie piva</h2>
-		{% load widget_tweaks %}
 
-		<form class="form-horizontal" role="form" method="post">
-			{% csrf_token %}
-			{% for field in form %}
-				{% if field.errors %}
-					<div class="form-group has-error">
-						<div class="col-sm-12">
-							<p>Zle vyplnené pole.<br>
-							{{ field.errors }}</p>
-						</div>
-					</div>
-				{% else %}
-					<div class="form-group">
-						<label class="col-sm-2 control-label" for="id_{{ field.name }}">{{ field.label }}</label>
-						<div class="col-sm-10">
-							{{ field|attr:"clas:form-control" }}
-						</div>
-					</div> <!-- form-group -->
-				{% endif %}
-
-			{% endfor %}
-			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-10">
-					<input type="submit" class="btn btn-primary" value="Ohodnotiť pivo">
+		<div class="container">
+			<div class="panel panel-primary dialog-panel">
+				<div class="panel-heading">
+					<h2>Hodnotenie piva</h2>
 				</div>
-			</div>
-		</form>
+
+				{% load widget_tweaks %}
+
+				<div class="panel-body">
+					<form class="form-horizontal" role="form" method="post">
+						{% csrf_token %}
+						{{ form.non_field_errors }}
+
+						<div class="form-group">
+							<label class="control-label col-md-2" for="{{ form.brewery.id_for_label }}">Pivovar</label>
+							<div class="col-md-7">
+								{{ form.brewery|attr:"class:form-control" }}
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-2" for="{{ form.name.id_for_label }}">Názov</label>
+							<div class="col-md-7">
+								{{ form.name|attr:"class:form-control" }}
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-2" for="{{ form.country.id_for_label }}">Krajina</label>
+							<div class="col-md-9">
+								<div class="col-md-4">
+									<div class="form-group internal input-group">
+										{{ form.country|attr:"class:form-control" }}
+									</div>
+								</div>
+
+								<label class="control-label col-md-2" for="form.style.id_for_label">Štýl</label>
+								<div class="col-md-3">
+									<div class="form-group internal input-group">
+										{{ form.style|attr:"class:form-control" }}
+									</div>
+								</div>
+							</div> <!-- col-md-9 -->
+						</div> <!-- form-group -->
+
+						<div class="form-group">
+							<label class="control-label col-md-2" for="{{ form.plato.id_for_label }}">Stupňovitosť</label>
+							<div class="col-md-9">
+								<div class="col-md-4">
+									<div class="form-group internal input-group">
+										{{ form.plato|attr:"class:form-control" }}
+									</div>
+								</div>
+
+								<label class="control-label col-md-2" for="form.abv.id_for_label">Alkohol</label>
+								<div class="col-md-3">
+									<div class="form-group internal input-group">
+										{{ form.abv|attr:"class:form-control" }}
+									</div>
+								</div>
+							</div> <!-- col-md-9 -->
+						</div> <!-- form-group -->
+
+						<div class="form-group">
+							<label class="control-label col-md-2" for="{{ form.city.id_for_label }}">Mesto</label>
+							<div class="col-md-7">
+								{{ form.city|attr:"class:form-control" }}
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-md-2" for="{{ form.place.id_for_label }}">Podnik/miesto</label>
+							<div class="col-md-7">
+								{{ form.place|attr:"class:form-control" }}
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="form-inline">
+								<label class="control-label col-md-2" for="{{ form.date.id_for_label }}">Dátum</label>
+								<div class="col-md-9">
+									{{ form.date|attr:"class:form-control" }}
+								</div> <!-- col-md-9 -->
+							</div>
+						 </div> <!-- form-group -->
+
+						<div class="form-group">
+							<label class="control-label col-md-2" for="{{ form.price.id_for_label }}">Cena</label>
+							<div class="col-md-9">
+								<div class="col-md-4">
+									<div class="form-group internal input-group">
+										{{ form.price|attr:"class:form-control" }}
+									</div>
+								</div>
+
+								<label class="control-label col-md-2" for="form.volume.id_for_label">Objem</label>
+								<div class="col-md-3">
+									<div class="form-group internal input-group">
+										{{ form.volume|attr:"class:form-control" }}
+									</div>
+								</div>
+							</div> <!-- col-md-9 -->
+						</div> <!-- form-group -->
+
+						<div class="form-group">
+							<label class="control-label col-md-2" for="{{ form.serving.id_for_label }}">Formát</label>
+							<div class="col-md-9">
+								<div class="col-md-4">
+									<div class="form-group internal input-group">
+										{{ form.serving|attr:"class:form-check" }}
+									</div>
+								</div>
+
+								<label class="control-label col-md-2" for="form.rating.id_for_label">Hodnotenie</label>
+								<div class="col-md-3">
+									<div class="form-group internal input-group">
+										{{ form.rating|attr:"class:form-control" }}
+									</div>
+								</div>
+							</div> <!-- col-md-9 -->
+						</div> <!-- form-group -->
+
+
+						<div class="form-group">
+							<label class="control-label col-md-2" for="{{ form.note.id_for_label }}">Poznámka</label>
+							<div class="col-md-7">
+								{{ form.note|attr:"class:form-control" }}
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-md-7 col-md-offset-2">
+								<input type="submit" class="btn btn-primary" value="Ohodnotiť pivo">
+							</div>
+						</div>
+
+					</form>
+				</div> <!-- panel-body -->
+			</div> <!-- panel -->
+		</div> <!-- container -->
+
 	{% else %} {% comment %}if user.is_authenticated{% endcomment %}
 		<p>Na túto akciu nemáte oprávnenie. Možno ste sa zabudli <a href="{% url 'login' %}">prihlásiť</a>?</p>
 	{% endif %}
