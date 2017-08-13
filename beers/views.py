@@ -5,7 +5,8 @@ from .models import Beer
 from .forms import BeerForm
 
 def zoznam(request):
-	return render(request, "beers/zoznam.html")
+	beer_list = Beer.objects.all()
+	return render(request, "beers/zoznam.html", {'beer_list': beer_list})
 
 def pridanie_piva(request):
 	if request.method == "POST":
