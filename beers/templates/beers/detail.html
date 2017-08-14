@@ -10,6 +10,18 @@
 
 		<h2>{{ beer.brewery }} - {{ beer.name }}</h2>
 
+			<p>
+				Štýl: {{ beer.get_style_display }}<br>
+				Krajina: {{ beer.get_country_display }}<br>
+				Pivo {% if beer.plato %}je {{ beer.plato }}-stupňové, {% endif %}má 
+				{% if not beer.abv %}?{% else %}{{ beer.abv }}{% endif %} % alkoholu.<br>
+				Ochutnané {% if beer.serving is True %}fľašové {% else %}čapované {% endif %}
+				{{ beer.get_volume_display }}, dňa {{ beer.date }} na mieste {{ beer.place }}, {{ beer.city }}{% if beer.price %} za cenu {{ beer.price }} €{% endif %}.<br>
+				Hodnotenie: {{ beer.get_rating_display }}
+				{% if beer.note %}<br>
+				Poznámka: {{ beer.note }}
+				{% endif %}
+
 	{% else %}
 		<p>Na túto akciu nemáte oprávnenie. Možno ste sa zabudli <a href="{% url 'login' %}">prihlásiť</a>?</p>
 	{% endif %}
