@@ -3,14 +3,15 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="{% static 'beers/css/bootstrap.min.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'beers/css/bootstrap-theme.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'beers/css/responsive.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'beers/css/style.css' %}">
 
 	<title>{% block title %}{% endblock %}</title>
 </head>
 
 <body>
 
-	<nav class="navbar navbar-inverse">
+	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
@@ -33,10 +34,10 @@
 				<ul class="nav navbar-nav navbar-right">
 					{% if not user.is_authenticated %}
 						<li><a href="{% url 'registration' %}">Registrácia</a></li>
-						<li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span>Prihlásiť sa</a></li>
+						<li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Prihlásiť sa</a></li>
 					{% else %}
 						<li class="navbar-text">Ste prihlásený ako {{ user.username }}</li>
-						<li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span>Odhlásiť sa</a></li>
+						<li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Odhlásiť sa</a></li>
 					{% endif %}
 				</ul>
 			</div> <!-- collapse navbar-collapse -->
