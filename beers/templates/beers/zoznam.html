@@ -12,6 +12,7 @@
 		<table id="ohodnotene_piva" class="table table-striped table-hover tablesorter">
 			<thead>
 				<tr>
+					<th>#</th>
 					<th><a href="?order_by=brewery">Pivovar</a></th>
 					<th><a href="?order_by=name">Názov</a></th>
 					<th><a href="?oder_by=style">Štýl</a></th>
@@ -23,6 +24,7 @@
 			<tbody>
 				{% for beer in beers %}
 					<tr class="clickable-row" data-href="{% url 'detail' beer.id %}">
+						<td>{{ forloop.counter0|add:beers.start_index }}</td>
 						<td>{{ beer.brewery }}</td>
 						<td>{{ beer.name }}</td>
 						<td>{{ beer.get_style_display }}</td>
