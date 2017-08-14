@@ -6,7 +6,7 @@ from .models import Beer
 from .forms import BeerForm
 
 def zoznam(request):
-	beer_list = Beer.objects.all()
+	beer_list = Beer.objects.all().order_by("id")
 	page = request.GET.get('page', 1)
 
 	paginator = Paginator(beer_list, 10)

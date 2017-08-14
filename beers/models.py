@@ -301,7 +301,7 @@ class Beer(models.Model):
 			('zwickel', 'Zwickel/Keller'),
 	)
 	style = models.CharField(
-		max_length=10,
+		max_length=30,
 		choices=STYLE_CHOICES,
 		default='ipa'
 	)
