@@ -61,16 +61,16 @@
 							<label class="control-label col-md-2" for="{{ form.plato.id_for_label }}">Stupňovitosť</label>
 							<div class="col-md-9">
 								<div class="col-md-4">
-									<div class="form-group internal input-group">
-										{{ form.plato|attr:"class:form-control" }}
+									<div class="form-inline internal input-inline">
+										{{ form.plato|attr:"class:form-control" }} °
 									</div>
 								</div>
 
 								{{ form.abv.errors }}
 								<label class="control-label col-md-2" for="form.abv.id_for_label">Alkohol</label>
 								<div class="col-md-3">
-									<div class="form-group internal input-group">
-										{{ form.abv|attr:"class:form-control" }}
+									<div class="form-inline internal input-inline">
+										{{ form.abv|attr:"class:form-control" }} %
 									</div>
 								</div>
 							</div> <!-- col-md-9 -->
@@ -107,8 +107,8 @@
 							<label class="control-label col-md-2" for="{{ form.price.id_for_label }}">Cena</label>
 							<div class="col-md-9">
 								<div class="col-md-4">
-									<div class="form-group internal input-group">
-										{{ form.price|attr:"class:form-control" }}
+									<div class="form-inline internal input-inline">
+										{{ form.price|attr:"class:form-control" }} €
 									</div>
 								</div>
 

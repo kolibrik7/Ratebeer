@@ -312,8 +312,8 @@ class Beer(models.Model):
 	place = models.CharField(max_length=70)
 
 	SERVING_CHOICES = (
-		(True, 'Fľaša'),
-		(False, 'Sud'),
+		(True, 'fľašové'),
+		(False, 'čapované'),
 	)
 	serving = models.BooleanField(choices=SERVING_CHOICES, default=True) # sud alebo flasa
 
@@ -333,7 +333,7 @@ class Beer(models.Model):
 		(DVE_DECI, '0,2l'),
 		(MALE, '0,3l'),
 		(MALA_FLASA, '0,33l'),
-		(STVORKA, '0.4l'),
+		(STVORKA, '0,4l'),
 		(VELKE, '0,5l'),
 		(SEDMICKA, '0,75l'),
 		(LITER, '1l'),
