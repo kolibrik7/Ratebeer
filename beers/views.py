@@ -1,12 +1,23 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import Beer
 from .forms import BeerForm
 
 def zoznam(request):
 	beer_list = Beer.objects.all()
-	return render(request, "beers/zoznam.html", {'beer_list': beer_list})
+	page = request.GET.get('page', 1)
+
+	paginator = Paginator(beer_list, 10)
+	try:
+		beers = paginator.page(page)
+	except PageNotAnInteger:
+		beers = paginator.page(1)
+	except EmptyPage:
+		beers = paginator.page(paginator.num_pages)
+
+	return render(request, "beers/zoznam.html", {'beers': beers})
 
 def pridanie_piva(request):
 	if request.method == "POST":
