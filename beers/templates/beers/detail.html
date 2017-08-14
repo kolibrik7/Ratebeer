@@ -1,0 +1,19 @@
+{% extends 'ratebeer/base.html' %}
+
+{% block title %}
+	{{ beer.brewery }} - {{ beer.name }}
+{% endblock %}
+
+{% block content %}
+
+	{% if user.is_authenticated %}
+
+		<h1>{{ beer.brewery }} - {{ beer.name }}</h1>
+
+	{% else %}
+		<p>Na túto akciu nemáte oprávnenie. Možno ste sa zabudli <a href="{% url 'login' %}">prihlásiť</a>?</p>
+	{% endif %}
+
+{% endblock %}
+
+

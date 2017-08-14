@@ -22,7 +22,7 @@
 
 			<tbody>
 				{% for beer in beer_list %}
-					<tr>
+					<tr class="clickable-row" data-href="{% url 'detail' beer.id %}">
 						<td>{{ beer.brewery }}</td>
 						<td>{{ beer.name }}</td>
 						<td>{{ beer.get_style_display }}</td>
@@ -46,5 +46,7 @@
 
 {% block javascript %}
 	$("#ohodnotene_piva").tablesorter();
-
+	$(".clickable-row").click(function() {
+		window.location = $(this).data("href");
+	});
 {% endblock %}

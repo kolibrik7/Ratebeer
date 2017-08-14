@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 
 from .models import Beer
@@ -18,3 +18,7 @@ def pridanie_piva(request):
 		form = BeerForm()
 
 	return render(request, "beers/pridanie_piva.html", {'form': form})
+
+def detail(request, beer_id):
+	beer = get_object_or_404(Beer, pk=beer_id)
+	return render(request, "beers/detail.html", {'beer': beer})
