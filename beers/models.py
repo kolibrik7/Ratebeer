@@ -322,7 +322,8 @@ class Beer(models.Model):
 
 	DECI = 0.1
 	DVE_DECI = 0.2
-	MALE = 0.33
+	MALE = 0.3
+	MALA_FLASA = 0.33
 	STVORKA = 0.4
 	VELKE = 0.5
 	SEDMICKA = 0.75
@@ -330,7 +331,8 @@ class Beer(models.Model):
 	VOLUME_CHOICES = (
 		(DECI, '0,1l'),
 		(DVE_DECI, '0,2l'),
-		(MALE, '0,33l'),
+		(MALE, '0,3l'),
+		(MALA_FLASA, '0,33l'),
 		(STVORKA, '0.4l'),
 		(VELKE, '0,5l'),
 		(SEDMICKA, '0,75l'),
