@@ -65,11 +65,6 @@
 
 {% endblock %}
 
-{% block scripts %}
-	{% load staticfiles %}
-	<script type="text/javascript" src="{% static 'beers/js/jquery.tablesorter.js' %}"></script>
-{% endblock %}
-
 {% block javascript %}
 	$(".clickable-row").click(function() {
 		window.location = $(this).data("href");
