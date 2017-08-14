@@ -12,11 +12,11 @@
 		<table id="ohodnotene_piva" class="table table-striped table-hover tablesorter">
 			<thead>
 				<tr>
-					<th>Pivovar</th>
-					<th>Názov</th>
-					<th>Štýl</th>
-					<th data-sorter="shortDate" data-date-format="ddmmyyyy">Dátum</th>
-					<th>Hodnotenie</th>
+					<th><a href="?order_by=brewery">Pivovar</a></th>
+					<th><a href="?order_by=name">Názov</a></th>
+					<th><a href="?oder_by=style">Štýl</a></th>
+					<th><a href="?order_by=date">Dátum</a></th>
+					<th><a href="?order_by=rating">Hodnotenie</a></th>
 				</tr>
 			</thead>
 
@@ -36,7 +36,7 @@
 		{% if beers.has_other_pages %}
 			<ul class="pagination">
 				{% if beers.has_previous %}
-					<li><a href="?page={{ beers.previous_page_number }}">&laquo;</a></li>
+					<li><a href="?page={{ beers.previous_page_number }}{% if not order_by is None %}&order_by={{ order_by }}{% endif %}">&laquo;</a></li>
 				{% else %}
 					<li class="disabled"><span>&laquo;</span></li>
 				{% endif %}
@@ -45,12 +45,12 @@
 					{% if beers.number == i %}
 						<li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
 					{% else %}
-						<li><a href="?page={{ i }}">{{ i }}</a></li>
+						<li><a href="?page={{ i }}{% if not order_by is None %}&order_by={{ order_by }}{% endif %}">{{ i }}</a></li>
 					{% endif %}
 				{% endfor %}
 
 				{% if beers.has_next %}
-					<li><a href="?page={{ beers.next_page_number }}">&raquo;</a></li>
+					<li><a href="?page={{ beers.next_page_number }}{% if not order_by is None %}&order_by={{ order_by }}{% endif %}">&raquo;</a></li>
 				{% else %}
 					<li class="disabled"><span>&raquo;</span></li>
 				{% endif %}
@@ -69,7 +69,6 @@
 {% endblock %}
 
 {% block javascript %}
-	$("#ohodnotene_piva").tablesorter();
 	$(".clickable-row").click(function() {
 		window.location = $(this).data("href");
 	});
