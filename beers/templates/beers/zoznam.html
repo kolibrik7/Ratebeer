@@ -14,7 +14,7 @@
 				<tr>
 					<th>#</th>
 					<th><a href="?order_by=brewery">Pivovar</a></th>
-					<th><a href="?order_by=name">Názov</a></th>
+					<th><a href="?order_by=beer">Názov</a></th>
 					<th><a href="?order_by=style">Štýl</a></th>
 					<th><a href="?order_by=date">Dátum</a></th>
 					<th><a href="?order_by=rating">Hodnotenie</a></th>
@@ -22,14 +22,14 @@
 			</thead>
 
 			<tbody>
-				{% for beer in beers %}
-					<tr class="clickable-row" data-href="{% url 'detail' beer.id %}">
+				{% for b in beers %}
+					<tr class="clickable-row" data-href="{% url 'detail' b.id %}">
 						<td>{{ forloop.counter0|add:beers.start_index }}</td>
-						<td>{{ beer.brewery }}</td>
-						<td>{{ beer.name }}</td>
-						<td>{{ beer.get_style_display }}</td>
-						<td>{{ beer.date|date:"d.m.Y" }}</td>
-						<td>{{ beer.rating }}</td>
+						<td>{{ b.beer.brewery.brewery_name }}</td>
+						<td>{{ b.beer.beer_name }}</td>
+						<td>{{ b.beer.get_style_display }}</td>
+						<td>{{ b.date|date:"d.m.Y" }}</td>
+						<td>{{ b.rating }}</td>
 					</tr>
 				{% endfor %}
 			</tbody>

@@ -8,14 +8,22 @@ from .models import Brewery, Beer, Rating
 from .forms import BeerForm
 
 def zoznam(request):
-	"""
+
 	order_by = request.GET.get('order_by')
+	print(order_by)
 	if order_by:
-		ordering = Lower(order_by)
+		if order_by == "brewery":
+			ordering = "beer__brewery__brewery_name"
+		elif order_by == "beer":
+			ordering = "beer__beer_name"
+		elif order_by == "style":
+			ordering = "beer__style"
+		else:
+			ordering = Lower(order_by)
 	else:
 		ordering = "id"
-	"""
-	beer_rating_list = Rating.objects.all()
+	
+	beer_rating_list = Rating.objects.all().select_related().order_by(ordering)
 
 	paginator = Paginator(beer_rating_list, 10)
 	page = request.GET.get('page', 1)
@@ -70,7 +78,8 @@ def pridanie_hodnotenia(request):
 	return render(request, "beers/pridanie_piva.html", {'form': form})
 
 def uprava_hodnotenia(request, rating_id):
-	beer = get_object_or_404(Beer, id=rating_id)
+	rating = get_object_or_404(Rating, pk=rating_id)
+	
 	form = BeerForm(request.POST or None, instance=beer)
 	if form.is_valid():
 		form.save()
