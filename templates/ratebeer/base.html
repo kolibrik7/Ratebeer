@@ -25,7 +25,7 @@
 					<li><a href="{% url 'index' %}">Hlavná stránka</a></li>
 					<li><a href="{% url 'zoznam' %}">Zoznam pív</a></li>
 					{% if user.is_authenticated %}
-						<li><a href="{% url 'pridanie_piva' %}">Hodnotiť pivo</a></li>
+						<li><a href="{% url 'pridanie_hodnotenia' %}">Hodnotiť pivo</a></li>
 					{% endif %}
 				</ul>
 

@@ -3,7 +3,7 @@ from . import views
 
 urlpatterns = [
 	url(r'^$', views.zoznam, name="zoznam"),
-	url(r'^pridanie_piva/$', views.pridanie_piva, name="pridanie_piva"),
+	url(r'^pridanie_hodnotenia/$', views.pridanie_hodnotenia, name="pridanie_hodnotenia"),
 	url(r'^(?P<beer_id>[0-9]+)/$', views.detail, name="detail"),
-	url(r'^(?P<beer_id>[0-9]+)/editovanie_piva/$', views.editovanie_piva, name="editovanie_piva"),
+	url(r'^(?P<beer_id>[0-9]+)/uprava_hodnotenia/$', views.uprava_hodnotenia, name="uprava_hodnotenia"),
 ]

@@ -26,7 +26,7 @@ def zoznam(request):
 
 	return render(request, "beers/zoznam.html", {'beers': beers, 'order_by': order_by})
 
-def pridanie_piva(request):
+def pridanie_hodnotenia(request):
 	if request.method == "POST":
 		form = BeerForm(request.POST)
 		if form.is_valid():
@@ -37,7 +37,7 @@ def pridanie_piva(request):
 
 	return render(request, "beers/pridanie_piva.html", {'form': form})
 
-def editovanie_piva(request, beer_id):
+def uprava_hodnotenia(request, beer_id):
 	beer = get_object_or_404(Beer, id=beer_id)
 	form = BeerForm(request.POST or None, instance=beer)
 	if form.is_valid():
