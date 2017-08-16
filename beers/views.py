@@ -37,6 +37,15 @@ def pridanie_piva(request):
 
 	return render(request, "beers/pridanie_piva.html", {'form': form})
 
+def editovanie_piva(request, beer_id):
+	beer = get_object_or_404(Beer, id=beer_id)
+	form = BeerForm(request.POST or None, instance=beer)
+	if form.is_valid():
+		form.save()
+		return HttpResponseRedirect("/beers/")
+
+	return render(request, "beers/editovanie_koncertu.html", {'form': form})
+
 def detail(request, beer_id):
 	beer = get_object_or_404(Beer, pk=beer_id)
 	return render(request, "beers/detail.html", {'beer': beer})

@@ -1,0 +1,17 @@
+{% extends 'ratebeer/base.html' %}
+
+{% block title %}
+	Editovanie piva
+{% endblock %}
+
+{% block content %}
+
+	{% if user.is_authenticated %}
+
+	
+
+	{% else %}
+		<p>Na túto akciu nemáte oprávnenie. Možno ste sa zabudli <a href="{% url 'login' %}">prihlásiť</a>?</p>
+	{% endif %}
+
+{% endblock %}
