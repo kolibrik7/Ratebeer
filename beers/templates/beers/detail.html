@@ -20,6 +20,9 @@
 				{% if beer.note %}<br>
 				Poznámka: {{ beer.note }}
 				{% endif %}
+			</p>
+
+			<a href="editovanie_piva/{{ beer.id }}/"><button class="button-primary">Editovať hodnotenie piva</button></a>
 
 	{% else %}
 		<p>Na túto akciu nemáte oprávnenie. Možno ste sa zabudli <a href="{% url 'login' %}">prihlásiť</a>?</p>
