@@ -31,7 +31,7 @@ def pridanie_hodnotenia(request):
 		form = BeerForm(request.POST)
 		if form.is_valid():
 			form.save()
-			return HttpResponseRedirect("/beers/")
+			return HttpResponseRedirect("/beers/pridanie_hodnotenia/")
 	else:
 		form = BeerForm()
 

@@ -15,7 +15,7 @@ class BeerForm(forms.ModelForm):
 		widget=forms.NumberInput(attrs={'id': 'stupnovitost', 'step': "0.5"}))
 	abv = forms.FloatField(required=False, label="Alkohol", min_value=0, max_value=20, initial=5,
 		widget=forms.NumberInput(attrs={'id': 'alkohol', 'step': "0.1"}))
-	price = forms.FloatField(required=False, label="Cena", min_value=0, max_value=5, initial=1.5,
+	price = forms.FloatField(required=False, label="Cena", min_value=0, max_value=10, initial=1.5,
 		widget=forms.NumberInput(attrs={'id': 'cena', 'step': "0.01"}))
 	note = forms.CharField(required=False, label="Poznámka", widget=forms.Textarea())
 
