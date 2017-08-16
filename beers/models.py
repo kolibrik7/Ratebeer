@@ -1,9 +1,10 @@
 from django.db import models
+from django.contrib.auth.models import User
 import django.utils.timezone
 
-class Beer(models.Model):
+class Brewery(models.Model):
 
-	brewery = models.CharField(max_length=50)
+	brewery_name = models.CharField(max_length=50)
 
 	COUNTRY_CHOICES = (
 		('AF', 'Afganistan'),
@@ -181,7 +182,6 @@ class Beer(models.Model):
 		('SI', 'Slovinsko'),
 		('SO', 'Somálsko'),
 		('AE', 'Spojené arabské emiráty'),
-		('GB', 'Spojené kráľovstvo'),
 		('US', 'Spojené štáty, USA'),
 		('RS', 'Srbsko'),
 		('LK', 'Srí Lanka'),
@@ -219,6 +219,7 @@ class Beer(models.Model):
 		('UZ', 'Uzbekistan'),
 		('VU', 'Vanuatu'),
 		('VA', 'Vatikán'),
+		('GB', 'Veľká Británia'),
 		('VE', 'Venezuela'),
 		('VN', 'Vietnam'),
 		('TL', 'Východný Timor'),
@@ -227,7 +228,11 @@ class Beer(models.Model):
 		('ZW', 'Zimbabwe'),
 	)
 	country = models.CharField(max_length=30, choices=COUNTRY_CHOICES, default='SK')
-	name = models.CharField(max_length=70)
+	brewery_city = models.CharField(max_length=50, null=True, blank=True)
+
+class Beer(models.Model):
+	brewery = models.ForeignKey(Brewery)
+	beer_name = models.CharField(max_length=70)
 
 	STYLE_CHOICES = (
 			('altbier', 'Altbier'),
@@ -308,8 +313,13 @@ class Beer(models.Model):
 
 	plato = models.FloatField(null=True, blank=True)
 	abv = models.FloatField(null=True, blank=True)
+
+class Rating(models.Model):
+	beer = models.ForeignKey(Beer)
+	user = models.ForeignKey(User)
+
 	city = models.CharField(max_length=50)
-	place = models.CharField(max_length=70)
+	place = models.CharField(max_length=70, null=True, blank=True)
 
 	SERVING_CHOICES = (
 		(True, 'fľašové'),

@@ -30,20 +30,32 @@
 						</div>
 
 						<div class="form-group">
-							{{ form.name.errors }}
-							<label class="control-label col-md-2" for="{{ form.name.id_for_label }}">Názov</label>
-							<div class="col-md-7">
-								{{ form.name|attr:"class:form-control" }}
-							</div>
-						</div>
-
-						<div class="form-group">
 							{{ form.country.errors }}
 							<label class="control-label col-md-2" for="{{ form.country.id_for_label }}">Krajina</label>
 							<div class="col-md-9">
 								<div class="col-md-4">
 									<div class="form-group internal input-group">
 										{{ form.country|attr:"class:form-control" }}
+									</div>
+								</div>
+
+								{{ form.style.erorrs }}
+								<label class="control-label col-md-2" for="form.brewery_city.id_for_label">Mesto</label>
+								<div class="col-md-3">
+									<div class="form-group internal input-group">
+										{{ form.brewery_city|attr:"class:form-control" }}
+									</div>
+								</div>
+							</div> <!-- col-md-9 -->
+						</div> <!-- form-group -->
+
+						<div class="form-group">
+							{{ form.name.errors }}
+							<label class="control-label col-md-2" for="{{ form.beer_name.id_for_label }}">Názov</label>
+							<div class="col-md-9">
+								<div class="col-md-4">
+									<div class="form-group internal input-group">
+										{{ form.beer_name|attr:"class:form-control" }}
 									</div>
 								</div>
 
@@ -154,6 +166,7 @@
 
 						<div class="form-group">
 							<div class="col-md-7 col-md-offset-2">
+								<input type="hidden" value="{{ user.id }}" name="user_id">
 								<input type="submit" class="btn btn-primary" value="Upraviť hodnotenie">
 							</div>
 						</div>
