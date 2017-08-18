@@ -54,18 +54,30 @@ def pridanie_hodnotenia(request):
 				obj_beer.brewery = obj_brewery
 				obj_beer.beer_name = request.POST["beer_name"]
 				obj_beer.style = request.POST["style"]
-				obj_beer.plato = request.POST["plato"]
-				obj_beer.abv = request.POST["abv"]
+				plato = request.POST["plato"]
+				if plato:
+					obj_beer.plato = plato
+				else:
+					obj_beer.plato = None
+				abv = request.POST["abv"]
+				if abv:
+					obj_beer.abv = abv
+				else:
+					obj_beer.abv = None
 				obj_beer.save()
 
 			obj_rating = Rating()
 			obj_rating.beer = obj_beer
-			obj_rating.user = get_object_or_404(User, pk=request.POST["user_id"])
+			obj_rating.user = get_object_or_404(User, pk=request.user.id)
 			obj_rating.city = request.POST["city"]
 			obj_rating.place = request.POST["place"]
 			obj_rating.date = form.cleaned_data["date"]
 			obj_rating.serving = request.POST["serving"]
-			obj_rating.price = request.POST["price"]
+			price = request.POST["price"]
+			if price:
+				obj_rating.price = price
+			else:
+				obj_rating.price = None
 			obj_rating.volume = request.POST["volume"]
 			obj_rating.rating = request.POST["rating"]
 			obj_rating.note = request.POST["note"]
@@ -88,6 +100,6 @@ def uprava_hodnotenia(request, rating_id):
 	return render(request, "beers/editovanie_piva.html", {'form': form})
 
 def detail(request, rating_id):
-	rating = get_object_or_404(Rating, pk=rating_id)
+	rating = Rating.objects.filter(pk=rating_id, user__id=request.user.id).select_related().first()
 
-	return render(request, "beers/detail.html", {'beer': beer})
+	return render(request, "beers/detail.html", {'rating': rating})

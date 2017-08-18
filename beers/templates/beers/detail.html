@@ -8,17 +8,18 @@
 
 	{% if user.is_authenticated %}
 
-		<h2>{{ beer.brewery }} - {{ beer.name }}</h2>
+		<h2>{{ rating.beer.brewery.brewery_name }} - {{ rating.beer.beer_name }}</h2>
 
 			<p>
-				Štýl: {{ beer.get_style_display }}<br>
-				Krajina: {{ beer.get_country_display }}<br>
-				Pivo {% if beer.plato %}je {{ beer.plato }}-stupňové, {% endif %}má 
-				{% if not beer.abv %}?{% else %}{{ beer.abv }}{% endif %} % alkoholu.<br>
-				Ochutnané {{ beer.get_serving_display }} {{ beer.get_volume_display }}, dňa {{ beer.date }} na mieste {{ beer.place }}, {{ beer.city }}{% if beer.price %} za cenu {{ beer.price }} €{% endif %}.<br>
-				Hodnotenie: {{ beer.get_rating_display }}
-				{% if beer.note %}<br>
-				Poznámka: {{ beer.note }}
+				Štýl: {{ rating.beer.get_style_display }}<br>
+				Krajina: {{ rating.beer.brewery.get_country_display }}<br>
+				Mesto: {{ rating.beer.brewery.brewery_city }}<br>
+				Pivo {% if rating.beer.plato %}je {{ rating.beer.plato }}-stupňové, {% endif %}má 
+				{% if not rating.beer.abv %}?{% else %}{{ rating.beer.abv }}{% endif %} % alkoholu.<br>
+				Ochutnané {{ rating.get_serving_display }} {{ rating.get_volume_display }}, dňa {{ rating.date }} na mieste {{ rating.place }}, {{ rating.city }}{% if rating.price %} za cenu {{ rating.price }} €{% endif %}.<br>
+				Hodnotenie: {{ rating.get_rating_display }}
+				{% if rating.note %}<br>
+				Poznámka: {{ rating.note }}
 				{% endif %}
 			</p>
 
