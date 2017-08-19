@@ -1,6 +1,7 @@
 ratebeerenv/
+*.pyc
 db.sqlite3
+.DS_Store
 ratebeer/__pycache__/
-manage.py
+beers/__pycache__/
 static/
-beers/migrations/
