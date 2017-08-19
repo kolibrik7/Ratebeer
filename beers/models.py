@@ -95,7 +95,7 @@ class Brewery(models.Model):
 		('JE', 'Jersey'),
 		('JO', 'Jordánsko'),
 		('ZA', 'Južná Afrika'),
-		('GS', 'Južná Georgia a JužnéSandwichove ostrovy'),
+		('GS', 'Južná Georgia a Južné Sandwichove ostrovy'),
 		('SS', 'Južný Sudán'),
 		('KY', 'Kajmanie ostrovy'),
 		('KH', 'Kambodža'),
