@@ -22,7 +22,7 @@ def zoznam(request):
 	else:
 		ordering = "id"
 	
-	beer_rating_list = Rating.objects.all().select_related().order_by(ordering)
+	beer_rating_list = Rating.objects.filter(user__id=request.user.id).select_related().order_by(ordering)
 
 	paginator = Paginator(beer_rating_list, 10)
 	page = request.GET.get('page', 1)
