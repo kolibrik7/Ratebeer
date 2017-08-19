@@ -10,7 +10,6 @@ from .forms import BeerForm
 def zoznam(request):
 
 	order_by = request.GET.get('order_by')
-	print(order_by)
 	if order_by:
 		if order_by == "brewery":
 			ordering = "beer__brewery__brewery_name"
@@ -34,7 +33,7 @@ def zoznam(request):
 	except EmptyPage:
 		beers = paginator.page(paginator.num_pages)
 
-	return render(request, "beers/zoznam.html", {'beers': beers})
+	return render(request, "beers/zoznam.html", {'beers': beers, 'order_by': order_by})
 
 def pridanie_hodnotenia(request):
 	if request.method == "POST":
@@ -90,12 +89,92 @@ def pridanie_hodnotenia(request):
 	return render(request, "beers/pridanie_piva.html", {'form': form})
 
 def uprava_hodnotenia(request, rating_id):
-	rating = get_object_or_404(Rating, pk=rating_id)
-	
-	form = BeerForm(request.POST or None, instance=beer)
-	if form.is_valid():
-		form.save()
-		return HttpResponseRedirect("/beers/")
+	rating = Rating.objects.filter(pk=rating_id, user__id=request.user.id).select_related().first()
+
+	context = {
+		'brewery': rating.beer.brewery.brewery_name,
+		'country': rating.beer.brewery.country,
+		'brewery_city': rating.beer.brewery.brewery_city,
+		'beer_name': rating.beer.beer_name,
+		'style': rating.beer.style,
+		'plato': rating.beer.plato,
+		'abv': rating.beer.abv,
+		'city': rating.city,
+		'place': rating.place,
+		'date': rating.date,
+		'price': rating.price,
+		'serving': rating.serving,
+		'volume': rating.volume,
+		'rating': rating.rating,
+		'note': rating.note,
+	}
+	form = BeerForm(context)
+	if request.method == "POST":
+		if form.is_valid():
+			obj_brewery = Brewery.objects.filter(brewery_name=request.POST["brewery"]).first()
+			if not obj_brewery:
+				obj_brewery = Brewery()
+				obj_brewery.brewery_name = request.POST["brewery"]
+				obj_brewery.country = request.POST["country"]
+				obj_brewery.brewery_city = request.POST["brewery_city"]
+				obj_brewery.save()
+			else:
+				obj_brewery.brewery_name = request.POST["brewery"]
+				obj_brewery.country = request.POST["country"]
+				obj_brewery.brewery_city = request.POST["brewery_city"]
+				obj_brewery.save()
+
+			obj_beer = Beer.objects.filter(pk=obj_brewery.id, beer_name=request.POST["beer_name"]).first()
+			if not obj_beer:
+				obj_beer = Beer()
+				obj_beer.brewery = obj_brewery
+				obj_beer.beer_name = request.POST["beer_name"]
+				obj_beer.style = request.POST["style"]
+				plato = request.POST["plato"]
+				if plato:
+					obj_beer.plato = plato
+				else:
+					obj_beer.plato = None
+				abv = request.POST["abv"]
+				if abv:
+					obj_beer.abv = abv
+				else:
+					obj_beer.abv = None
+				obj_beer.save()
+			else:
+				obj_beer.brewery = obj_brewery
+				obj_beer.beer_name = request.POST["beer_name"]
+				obj_beer.style = request.POST["style"]
+				plato = request.POST["plato"]
+				if plato:
+					obj_beer.plato = plato
+				else:
+					obj_beer.plato = None
+				abv = request.POST["abv"]
+				if abv:
+					obj_beer.abv = abv
+				else:
+					obj_beer.abv = None
+				obj_beer.save()
+
+			obj_rating = Rating.objects.filter(pk=rating_id).first()
+			obj_rating.beer = obj_beer
+			obj_rating.user = get_object_or_404(User, pk=request.user.id)
+			obj_rating.city = request.POST["city"]
+			obj_rating.place = request.POST["place"]
+			obj_rating.date = form.cleaned_data["date"]
+			obj_rating.serving = request.POST["serving"]
+			price = request.POST["price"]
+			if price:
+				obj_rating.price = price
+			else:
+				obj_rating.price = None
+			obj_rating.volume = request.POST["volume"]
+			obj_rating.rating = request.POST["rating"]
+			obj_rating.note = request.POST["note"]
+			obj_rating.save()
+
+			return HttpResponseRedirect("/beers/"+rating_id+"/")
 
 	return render(request, "beers/editovanie_piva.html", {'form': form})
 
