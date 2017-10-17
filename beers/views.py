@@ -162,7 +162,7 @@ def uprava_hodnotenia(request, rating_id):
 			obj_rating.user = get_object_or_404(User, pk=request.user.id)
 			obj_rating.city = request.POST["city"]
 			obj_rating.place = request.POST["place"]
-			obj_rating.date = form.cleaned_data["date"]
+			obj_rating.date = BeerForm(request.POST).cleaned_data["date"]
 			obj_rating.serving = request.POST["serving"]
 			price = request.POST["price"]
 			if price:
