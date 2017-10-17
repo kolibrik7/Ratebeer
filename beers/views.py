@@ -20,7 +20,7 @@ def zoznam(request):
 		else:
 			ordering = Lower(order_by)
 	else:
-		ordering = "id"
+		ordering = "date"
 	
 	beer_rating_list = Rating.objects.filter(user__id=request.user.id).select_related().order_by(ordering)
 
@@ -162,7 +162,8 @@ def uprava_hodnotenia(request, rating_id):
 			obj_rating.user = get_object_or_404(User, pk=request.user.id)
 			obj_rating.city = request.POST["city"]
 			obj_rating.place = request.POST["place"]
-			obj_rating.date = BeerForm(request.POST).cleaned_data["date"]
+			posted_form = BeerForm(request.POST)
+			obj_rating.date = posted_form.cleaned_data["date"]
 			obj_rating.serving = request.POST["serving"]
 			price = request.POST["price"]
 			if price:
