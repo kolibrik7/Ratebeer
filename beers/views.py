@@ -163,7 +163,8 @@ def uprava_hodnotenia(request, rating_id):
 			obj_rating.city = request.POST["city"]
 			obj_rating.place = request.POST["place"]
 			posted_form = BeerForm(request.POST)
-			obj_rating.date = posted_form.cleaned_data["date"]
+			if posted_form.is_valid():
+				obj_rating.date = posted_form.cleaned_data["date"]
 			obj_rating.serving = request.POST["serving"]
 			price = request.POST["price"]
 			if price:
