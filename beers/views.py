@@ -24,7 +24,7 @@ def zoznam(request):
 	
 	beer_rating_list = Rating.objects.filter(user__id=request.user.id).select_related().order_by(ordering)
 
-	paginator = Paginator(beer_rating_list, 10)
+	paginator = Paginator(beer_rating_list, 30)
 	page = request.GET.get('page', 1)
 	try:
 		beers = paginator.page(page)

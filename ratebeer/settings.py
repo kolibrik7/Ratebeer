@@ -56,7 +56,7 @@ ROOT_URLCONF = 'ratebeer.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/home/fred/Development/Ratebeer/templates'],
+        'DIRS': ['/home/fred/Development/ratebeer/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -125,7 +125,7 @@ DATE_FORMAT = 'j F Y'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, '../static/')
-STATICFILES_DIRS = ('/home/fred/Development/Ratebeer/static/',)
+STATICFILES_DIRS = ('/home/fred/Development/ratebeer/static/',)
 
 LOGIN_REDIRECT_URL = '/beers/'
 LOGOUT_REDIRECT_URL = '/'

@@ -230,6 +230,10 @@ class Brewery(models.Model):
 	country = models.CharField(max_length=30, choices=COUNTRY_CHOICES, default='SK')
 	brewery_city = models.CharField(max_length=50, null=True, blank=True)
 
+	def __str__(self):
+		return self.brewery_name
+
+
 class Beer(models.Model):
 	brewery = models.ForeignKey(Brewery)
 	beer_name = models.CharField(max_length=70)
@@ -314,6 +318,9 @@ class Beer(models.Model):
 	plato = models.FloatField(null=True, blank=True)
 	abv = models.FloatField(null=True, blank=True)
 
+	def __str__(self):
+		return self.brewery.brewery_name + " - " + self.beer_name
+
 class Rating(models.Model):
 	beer = models.ForeignKey(Beer)
 	user = models.ForeignKey(User)
@@ -365,3 +372,6 @@ class Rating(models.Model):
 		(SUPER, '5'),
 	)
 	rating = models.PositiveSmallIntegerField(choices=RATING_CHOICES, default=PRIEMER) #choices
+
+	def __str__(self):
+		return self.user.username + " - " + self.beer.brewery.brewery_name + " - " + self.beer.beer_name
