@@ -364,6 +364,7 @@ class Rating(models.Model):
 	PRIEMER = 3
 	NADPRIEMER = 4
 	SUPER = 5
+	EXCELENT = 666
 	RATING_CHOICES = (
 		(ZLE, '1'),
 		(PODPRIEMER, '2'),
