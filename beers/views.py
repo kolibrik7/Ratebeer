@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models.functions import Lower
 from django.contrib.auth.models import User
@@ -184,3 +184,11 @@ def detail(request, rating_id):
 	rating = Rating.objects.filter(pk=rating_id, user__id=request.user.id).select_related().first()
 
 	return render(request, "beers/detail.html", {'rating': rating})
+
+def pivovar_atributy(request):
+	brewery_name = request.GET["brewery_name"]
+	brewery = Brewery.objects.filter(brewery_name=brewery_name).values()
+	if brewery:
+		return JsonResponse(brewery[0], safe=False)
+	else:
+		return JsonResponse({})

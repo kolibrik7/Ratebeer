@@ -3,6 +3,19 @@ from .models import Brewery, Beer, Rating
 from django.utils.translation import ugettext_lazy as _
 import datetime
 
+class CustomModelChoiceField(forms.ModelChoiceField):
+	def to_python(self, value):
+		if value in self.empty_values:
+			return None
+
+		key = self.to_field_name or 'pk'
+		try:
+			value2 = self.queryset.get(**{key: value})
+			return value2
+		except Exception:
+			self.queryset.create(brewery_name=value)
+			return value
+
 class BeerForm(forms.Form):
 
 	def years():
@@ -10,7 +23,7 @@ class BeerForm(forms.Form):
 		first_year = current_year - 5
 		return list(range(first_year, current_year + 1))
 
-	brewery = forms.CharField(label="Pivovar")
+	brewery = CustomModelChoiceField(label="Pivovar", queryset=Brewery.objects.all(), to_field_name="brewery_name")
 	country = forms.CharField(label="Krajina", widget=forms.Select(choices=Brewery.COUNTRY_CHOICES), initial='SK')
 	brewery_city = forms.CharField(required=False, label="Mesto")
 

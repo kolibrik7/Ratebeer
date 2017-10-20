@@ -180,6 +180,22 @@
 
 {% endblock %}
 
-{% block scripts %}
-	
+{% block javascript %}
+	$("#id_brewery").select2({
+		tags: true
+	});
+
+	$("#id_brewery").change(function() {
+		var brewery_name = $(this).val();
+		$.ajax({
+			url: '{% url "pivovar_atributy" %}',
+			data: {"brewery_name": brewery_name},
+			success: function(response) {
+				if ($.trim(response)) {
+					$("#id_country").val(response["country"]).change();
+					$("#id_brewery_city").val(response["brewery_city"]).change();
+				}
+			}	
+		});
+	});
 {% endblock %}

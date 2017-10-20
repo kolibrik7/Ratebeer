@@ -370,6 +370,7 @@ class Rating(models.Model):
 		(PRIEMER, '3'),
 		(NADPRIEMER, '4'),
 		(SUPER, '5'),
+		(EXCELENT, '666'),
 	)
 	rating = models.PositiveSmallIntegerField(choices=RATING_CHOICES, default=PRIEMER) #choices
 
