@@ -5,3 +5,4 @@ db.sqlite3
 ratebeer/__pycache__/
 beers/__pycache__/
 static/
+ratebeer/settings.py
