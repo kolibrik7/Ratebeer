@@ -27,7 +27,6 @@ class BeerForm(forms.Form):
 	country = forms.CharField(label="Krajina", widget=forms.Select(choices=Brewery.COUNTRY_CHOICES), initial='SK')
 	brewery_city = forms.CharField(required=False, label="Mesto")
 
-	#beer_name = forms.CharField(label="Názov")
 	beer_name = CustomModelChoiceField(label="Názov", queryset=Beer.objects.all(), to_field_name="beer_name")
 	style = forms.CharField(label="Štýl", widget=forms.Select(choices=Beer.STYLE_CHOICES), initial='ipa')
 	plato = forms.FloatField(required=False, label="Stupňovitosť", min_value=6, max_value=40, initial=12,
@@ -35,8 +34,9 @@ class BeerForm(forms.Form):
 	abv = forms.FloatField(required=False, label="Alkohol", min_value=0, max_value=20, initial=5,
 		widget=forms.NumberInput(attrs={'id': 'alkohol', 'step': "0.1"}))
 
-	city = forms.CharField(label="Mesto")
+	city = CustomModelChoiceField(label="Mesto", queryset=Rating.objects.values_list("city", flat=True).distinct())
 	place = forms.CharField(required=False, label="Podnik/Miesto")
+	place = CustomModelChoiceField(required=False, label="Podnik/Miesto", queryset=Rating.objects.values_list("place", flat=True).distinct())
 	date = forms.DateField(label="Dátum", widget=forms.SelectDateWidget(years=years()), initial=datetime.date.today)
 	price = forms.FloatField(required=False, label="Cena", min_value=0, max_value=10, initial=1.5,
 		widget=forms.NumberInput(attrs={'id': 'cena', 'step': "0.01"}))

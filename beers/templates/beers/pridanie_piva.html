@@ -189,6 +189,14 @@
 		tags: true
 	});
 
+	$("#id_city").select2({
+		tags: true
+	});
+
+	$("#id_place").select2({
+		tags: true
+	});
+
 	$("#id_brewery").change(function() {
 		var brewery_name = $(this).val();
 		$.ajax({
