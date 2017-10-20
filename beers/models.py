@@ -319,7 +319,7 @@ class Beer(models.Model):
 	abv = models.FloatField(null=True, blank=True)
 
 	def __str__(self):
-		return self.brewery.brewery_name + " - " + self.beer_name
+		return self.beer_name
 
 class Rating(models.Model):
 	beer = models.ForeignKey(Beer)

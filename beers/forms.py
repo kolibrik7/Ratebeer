@@ -7,14 +7,14 @@ class CustomModelChoiceField(forms.ModelChoiceField):
 	def to_python(self, value):
 		if value in self.empty_values:
 			return None
-
+		"""
 		key = self.to_field_name or 'pk'
 		try:
 			value2 = self.queryset.get(**{key: value})
 			return value2
 		except Exception:
-			self.queryset.create(brewery_name=value)
-			return value
+		"""
+		return value
 
 class BeerForm(forms.Form):
 
@@ -27,7 +27,8 @@ class BeerForm(forms.Form):
 	country = forms.CharField(label="Krajina", widget=forms.Select(choices=Brewery.COUNTRY_CHOICES), initial='SK')
 	brewery_city = forms.CharField(required=False, label="Mesto")
 
-	beer_name = forms.CharField(label="Názov")
+	#beer_name = forms.CharField(label="Názov")
+	beer_name = CustomModelChoiceField(label="Názov", queryset=Beer.objects.all(), to_field_name="beer_name")
 	style = forms.CharField(label="Štýl", widget=forms.Select(choices=Beer.STYLE_CHOICES), initial='ipa')
 	plato = forms.FloatField(required=False, label="Stupňovitosť", min_value=6, max_value=40, initial=12,
 		widget=forms.NumberInput(attrs={'id': 'stupnovitost', 'step': "0.5"}))

@@ -187,8 +187,24 @@ def detail(request, rating_id):
 
 def pivovar_atributy(request):
 	brewery_name = request.GET["brewery_name"]
-	brewery = Brewery.objects.filter(brewery_name=brewery_name).values()
-	if brewery:
-		return JsonResponse(brewery[0], safe=False)
-	else:
+	response = []
+	try:
+		brewery_values = Brewery.objects.filter(brewery_name=brewery_name).values()
+		response.append(brewery_values[0])
+	except Exception:
+		brewery_values = None
+		response.append({})
+
+	if brewery_values:
+		beers = list(Beer.objects.filter(brewery__brewery_name=brewery_name).values())
+		response.append(beers)
+
+	return JsonResponse(response, safe=False)
+
+def pivo_atributy(request):
+	beer_name = request.GET["beer_name"]
+	try:
+		beer = Beer.objects.filter(beer_name=beer_name).values()
+		return JsonResponse(beer[0], safe=False)
+	except Exception:
 		return JsonResponse({})
