@@ -23,46 +23,46 @@
 
 						<div class="form-group">
 							{{ form.brewery.errors }}
-							<label class="control-label col-md-2" for="{{ form.brewery.id_for_label }}">Pivovar</label>
-							<div class="col-md-7">
+							<label class="control-label col-xs-12 col-md-2" for="{{ form.brewery.id_for_label }}">Pivovar</label>
+							<div class="col-xs-12 col-md-7">
 								{{ form.brewery|attr:"class:form-control" }}
 							</div>
 						</div>
 
 						<div class="form-group">
 							{{ form.country.errors }}
-							<label class="control-label col-md-2" for="{{ form.country.id_for_label }}">Krajina</label>
-							<div class="col-md-9">
-								<div class="col-md-4">
-									<div class="form-group internal input-group">
+							<label class="control-label col-xs-12 col-md-2" for="{{ form.country.id_for_label }}">Krajina</label>
+							<div class="col-xs-12 col-md-9">
+								<div class="col-xs-12 col-md-4">
+									<div class="form-group internal">
 										{{ form.country|attr:"class:form-control" }}
 									</div>
 								</div>
 
 								{{ form.style.erorrs }}
 								<label class="control-label col-md-2" for="form.brewery_city.id_for_label">Mesto</label>
-								<div class="col-md-3">
-									<div class="form-group internal input-group">
+								<div class="col-xs-12 col-md-3">
+									<div class="form-group internal">
 										{{ form.brewery_city|attr:"class:form-control" }}
 									</div>
 								</div>
-							</div> <!-- col-md-9 -->
+							</div>
 						</div> <!-- form-group -->
 
 						<div class="form-group">
 							{{ form.name.errors }}
-							<label class="control-label col-md-2" for="{{ form.beer_name.id_for_label }}">Názov</label>
+							<label class="control-label col-xs-12 col-md-2" for="{{ form.beer_name.id_for_label }}">Názov</label>
 							<div class="col-md-9">
-								<div class="col-md-4">
-									<div class="form-group internal input-group">
+								<div class="col-xs-12 col-md-4">
+									<div class="form-group internal">
 										{{ form.beer_name|attr:"class:form-control" }}
 									</div>
 								</div>
 
 								{{ form.style.erorrs }}
-								<label class="control-label col-md-2" for="form.style.id_for_label">Štýl</label>
-								<div class="col-md-3">
-									<div class="form-group internal input-group">
+								<label class="control-label col-xs-12 col-md-2" for="form.style.id_for_label">Štýl</label>
+								<div class="col-xs-12 col-md-3">
+									<div class="form-group internal">
 										{{ form.style|attr:"class:form-control" }}
 									</div>
 								</div>
@@ -71,19 +71,25 @@
 
 						<div class="form-group">
 							{{ form.plato.errors }}
-							<label class="control-label col-md-2" for="{{ form.plato.id_for_label }}">Stupňovitosť</label>
-							<div class="col-md-9">
-								<div class="col-md-4">
-									<div class="form-inline internal input-inline">
-										{{ form.plato|attr:"class:form-control" }} °
+							<label class="control-label col-xs-12 col-md-2" for="{{ form.plato.id_for_label }}">Stupňovitosť</label>
+							<div class=" col-xs-12 col-md-9">
+								<div class="col-xs-12 col-md-4">
+									<div class="form-inline internal">
+										<div class="input-group">
+											{{ form.plato|attr:"class:form-control" }}
+											<span class="input-group-addon">°</span>
+										</div>
 									</div>
 								</div>
 
 								{{ form.abv.errors }}
-								<label class="control-label col-md-2" for="form.abv.id_for_label">Alkohol</label>
-								<div class="col-md-3">
-									<div class="form-inline internal input-inline">
-										{{ form.abv|attr:"class:form-control" }} %
+								<label class="control-label col-xs-12 col-md-2" for="form.abv.id_for_label">Alkohol</label>
+								<div class="col-xs-12 col-md-3">
+									<div class="form-inline internal">
+										<div class="input-group">
+											{{ form.abv|attr:"class:form-control" }}
+											<span class="input-group-addon">%</span>
+										</div>
 									</div>
 								</div>
 							</div> <!-- col-md-9 -->
@@ -91,16 +97,16 @@
 
 						<div class="form-group">
 							{{ form.city.errors }}
-							<label class="control-label col-md-2" for="{{ form.city.id_for_label }}">Mesto</label>
-							<div class="col-md-7">
+							<label class="control-label col-xs-12 col-md-2" for="{{ form.city.id_for_label }}">Mesto</label>
+							<div class="col-xs-12 col-md-7">
 								{{ form.city|attr:"class:form-control" }}
 							</div>
 						</div>
 
 						<div class="form-group">
 							{{ form.place.errors }}
-							<label class="control-label col-md-2" for="{{ form.place.id_for_label }}">Podnik/miesto</label>
-							<div class="col-md-7">
+							<label class="control-label col-xs-12 col-md-2" for="{{ form.place.id_for_label }}">Podnik/miesto</label>
+							<div class="col-xs-12 col-md-7">
 								{{ form.place|attr:"class:form-control" }}
 							</div>
 						</div>
@@ -108,8 +114,8 @@
 						<div class="form-group">
 							<div class="form-inline">
 								{{ form.date.errors }}
-								<label class="control-label col-md-2" for="{{ form.date.id_for_label }}">Dátum</label>
-								<div class="col-md-9">
+								<label class="control-label col-xs-12 col-md-2" for="{{ form.date.id_for_label }}">Dátum</label>
+								<div class="col-xs-12 col-md-9">
 									{{ form.date|attr:"class:form-control" }}
 								</div> <!-- col-md-9 -->
 							</div>
@@ -117,18 +123,21 @@
 
 						<div class="form-group">
 							{{ form.price.errors }}
-							<label class="control-label col-md-2" for="{{ form.price.id_for_label }}">Cena</label>
-							<div class="col-md-9">
-								<div class="col-md-4">
-									<div class="form-inline internal input-inline">
-										{{ form.price|attr:"class:form-control" }} €
+							<label class="control-label col-xs-12 col-md-2" for="{{ form.price.id_for_label }}">Cena</label>
+							<div class="col-xs-12 col-md-9">
+								<div class="col-xs-12 col-md-4">
+									<div class="form-inline internal">
+										<div class="input-group">
+											{{ form.price|attr:"class:form-control" }}
+											<span class="input-group-addon">€</span>
+										</div>
 									</div>
 								</div>
 
 								{{ form.volume.errors }}
-								<label class="control-label col-md-2" for="form.volume.id_for_label">Objem</label>
-								<div class="col-md-3">
-									<div class="form-group internal input-group">
+								<label class="control-label col-xs-12 col-md-2" for="form.volume.id_for_label">Objem</label>
+								<div class="col-xs-12 col-md-3">
+									<div class="form-group internal">
 										{{ form.volume|attr:"class:form-control" }}
 									</div>
 								</div>
@@ -137,18 +146,18 @@
 
 						<div class="form-group">
 							{{ form.serving.errors }}
-							<label class="control-label col-md-2" for="{{ form.serving.id_for_label }}">Formát</label>
-							<div class="col-md-9">
-								<div class="col-md-4">
-									<div class="form-group internal input-group">
+							<label class="control-label col-xs-12 col-md-2" for="{{ form.serving.id_for_label }}">Formát</label>
+							<div class="col-xs-12 col-md-9">
+								<div class="col-xs-12 col-md-4">
+									<div class="form-group internal">
 										{{ form.serving|attr:"class:form-check" }}
 									</div>
 								</div>
 
 								{{ form.rating.errors }}
-								<label class="control-label col-md-2" for="form.rating.id_for_label">Hodnotenie</label>
-								<div class="col-md-3">
-									<div class="form-group internal input-group">
+								<label class="control-label col-xs-12 col-md-2" for="form.rating.id_for_label">Hodnotenie</label>
+								<div class="col-xs-12 col-md-3">
+									<div class="form-group internal">
 										{{ form.rating|attr:"class:form-control" }}
 									</div>
 								</div>
@@ -158,14 +167,14 @@
 
 						<div class="form-group">
 							{{ form.note.errors }}
-							<label class="control-label col-md-2" for="{{ form.note.id_for_label }}">Poznámka</label>
-							<div class="col-md-7">
+							<label class="control-label col-xs-12 col-md-2" for="{{ form.note.id_for_label }}">Poznámka</label>
+							<div class="col-xs-12 col-md-7">
 								{{ form.note|attr:"class:form-control" }}
 							</div>
 						</div>
 
 						<div class="form-group">
-							<div class="col-md-7 col-md-offset-2">
+							<div class="col-xs-12 col-md-7 col-md-offset-2">
 								<input type="hidden" value="{{ user.id }}" name="user_id">
 								<input type="submit" class="btn btn-primary" value="Upraviť hodnotenie">
 							</div>
@@ -199,40 +208,4 @@
 		tags: true
 	});
 
-	$("#id_brewery").change(function() {
-		var brewery_name = $(this).val();
-		$.ajax({
-			url: '{% url "pivovar_atributy" %}',
-			data: {"brewery_name": brewery_name},
-			success: function(response) {
-				brewery = response[0];
-				beer_list = response[1];
-				if ($.trim(brewery)) {
-					$("#id_country").val(brewery["country"]).change();
-					$("#id_brewery_city").val(brewery["brewery_city"]).change();
-				}
-
-				$("#id_beer_name").empty();
-				$("#id_beer_name").append('<option value="" selected>---------</option>');
-				$.each(beer_list, function(key, value) {
-					$("#id_beer_name").append($("<option>", { value: value.beer_name }).text(value.beer_name));
-				});
-			}	
-		});
-	});
-
-	$("#id_beer_name").change(function() {
-		var beer_name = $(this).val();
-		$.ajax({
-			url: '{% url "pivo_atributy" %}',
-			data: {"beer_name": beer_name},
-			success: function(response) {
-				if ($.trim(response)) {
-					$("#id_style").val(response["style"]).change();
-					$("#stupnovitost").val(response["plato"]).change();
-					$("#alkohol").val(response["abv"]).change();
-				}
-			}
-		});
-	});
 {% endblock %}

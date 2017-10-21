@@ -5,7 +5,10 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'beers/css/bootstrap.min.css' %}">
 
 	<script src="{% static 'beers/js/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'beers/js/bootstrap.min.js' %}"></script>
+
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" rel="stylesheet">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
 
 	<style>
@@ -20,8 +23,8 @@
 
 <body>
 
-	<nav class="navbar navbar-default">
-		<div class="container-fluid">
+	<nav class="navbar navbar-default navbar-inverse" role="navigation">
+		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
 					<span class="icon-bar"></span>
@@ -55,8 +58,10 @@
 
 	<div class="container">
 		<div class="jumbotron">
-			{% block content %}
-			{% endblock %}
+			
+				{% block content %}
+				{% endblock %}
+			
 		</div>
 	</div>
 
