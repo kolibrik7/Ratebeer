@@ -181,3 +181,58 @@
 	{% endif %}
 
 {% endblock %}
+
+{% block javascript %}
+	$("#id_brewery").select2({
+		tags: true
+	});
+
+	$("#id_beer_name").select2({
+		tags: true
+	});
+
+	$("#id_city").select2({
+		tags: true
+	});
+
+	$("#id_place").select2({
+		tags: true
+	});
+
+	$("#id_brewery").change(function() {
+		var brewery_name = $(this).val();
+		$.ajax({
+			url: '{% url "pivovar_atributy" %}',
+			data: {"brewery_name": brewery_name},
+			success: function(response) {
+				brewery = response[0];
+				beer_list = response[1];
+				if ($.trim(brewery)) {
+					$("#id_country").val(brewery["country"]).change();
+					$("#id_brewery_city").val(brewery["brewery_city"]).change();
+				}
+
+				$("#id_beer_name").empty();
+				$("#id_beer_name").append('<option value="" selected>---------</option>');
+				$.each(beer_list, function(key, value) {
+					$("#id_beer_name").append($("<option>", { value: value.beer_name }).text(value.beer_name));
+				});
+			}	
+		});
+	});
+
+	$("#id_beer_name").change(function() {
+		var beer_name = $(this).val();
+		$.ajax({
+			url: '{% url "pivo_atributy" %}',
+			data: {"beer_name": beer_name},
+			success: function(response) {
+				if ($.trim(response)) {
+					$("#id_style").val(response["style"]).change();
+					$("#stupnovitost").val(response["plato"]).change();
+					$("#alkohol").val(response["abv"]).change();
+				}
+			}
+		});
+	});
+{% endblock %}
