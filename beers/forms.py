@@ -23,20 +23,20 @@ class BeerForm(forms.Form):
 		first_year = current_year - 5
 		return list(range(first_year, current_year + 1))
 
-	brewery = CustomModelChoiceField(label="Pivovar", queryset=Brewery.objects.all(), to_field_name="brewery_name")
+	brewery = CustomModelChoiceField(label="Pivovar", queryset=Brewery.objects.all().order_by("brewery_name"), to_field_name="brewery_name")
 	country = forms.CharField(label="Krajina", widget=forms.Select(choices=Brewery.COUNTRY_CHOICES), initial='SK')
 	brewery_city = forms.CharField(required=False, label="Mesto")
 
-	beer_name = CustomModelChoiceField(label="Názov", queryset=Beer.objects.all(), to_field_name="beer_name")
+	beer_name = CustomModelChoiceField(label="Názov", queryset=Beer.objects.all().order_by("beer_name"), to_field_name="beer_name")
 	style = forms.CharField(label="Štýl", widget=forms.Select(choices=Beer.STYLE_CHOICES), initial='ipa')
 	plato = forms.FloatField(required=False, label="Stupňovitosť", min_value=6, max_value=40, initial=12,
 		widget=forms.NumberInput(attrs={'id': 'stupnovitost', 'step': "0.5"}))
 	abv = forms.FloatField(required=False, label="Alkohol", min_value=0, max_value=20, initial=5,
 		widget=forms.NumberInput(attrs={'id': 'alkohol', 'step': "0.1"}))
 
-	city = CustomModelChoiceField(label="Mesto", queryset=Rating.objects.values_list("city", flat=True).distinct())
+	city = CustomModelChoiceField(label="Mesto", queryset=Rating.objects.values_list("city", flat=True).distinct().order_by("city"))
 	place = forms.CharField(required=False, label="Podnik/Miesto")
-	place = CustomModelChoiceField(required=False, label="Podnik/Miesto", queryset=Rating.objects.values_list("place", flat=True).distinct())
+	place = CustomModelChoiceField(required=False, label="Podnik/Miesto", queryset=Rating.objects.values_list("place", flat=True).distinct().order_by("place"))
 	date = forms.DateField(label="Dátum", widget=forms.SelectDateWidget(years=years()), initial=datetime.date.today)
 	price = forms.FloatField(required=False, label="Cena", min_value=0, max_value=10, initial=1.5,
 		widget=forms.NumberInput(attrs={'id': 'cena', 'step': "0.01"}))

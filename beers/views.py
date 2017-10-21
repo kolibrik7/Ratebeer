@@ -193,14 +193,14 @@ def pivovar_atributy(request):
 	brewery_name = request.GET["brewery_name"]
 	response = []
 	try:
-		brewery_values = Brewery.objects.filter(brewery_name=brewery_name).values()
+		brewery_values = Brewery.objects.filter(brewery_name=brewery_name).values().order_by("brewery_name")
 		response.append(brewery_values[0])
 	except Exception:
 		brewery_values = None
 		response.append({})
 
 	if brewery_values:
-		beers = list(Beer.objects.filter(brewery__brewery_name=brewery_name).values())
+		beers = list(Beer.objects.filter(brewery__brewery_name=brewery_name).values().order_by("beer_name"))
 		response.append(beers)
 
 	return JsonResponse(response, safe=False)
@@ -208,7 +208,7 @@ def pivovar_atributy(request):
 def pivo_atributy(request):
 	beer_name = request.GET["beer_name"]
 	try:
-		beer = Beer.objects.filter(beer_name=beer_name).values()
+		beer = Beer.objects.filter(beer_name=beer_name).values().order_by("beer_name")
 		return JsonResponse(beer[0], safe=False)
 	except Exception:
 		return JsonResponse({})
