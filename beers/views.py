@@ -180,6 +180,10 @@ def uprava_hodnotenia(request, rating_id):
 
 	return render(request, "beers/editovanie_piva.html", {'form': form})
 
+def zmazanie_hodnotenia(request, rating_id):
+	Rating.objects.filter(pk=rating_id).delete()
+	return HttpResponseRedirect("/beers")
+
 def detail(request, rating_id):
 	rating = Rating.objects.filter(pk=rating_id, user__id=request.user.id).select_related().first()
 
